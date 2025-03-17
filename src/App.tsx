@@ -2,14 +2,7 @@ import { useState } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 // ant core
-import {
-  Avatar,
-  Button,
-  Modal,
-  Input,
-  Form,
-  Select,
-} from "antd";
+import { Avatar, Button, Modal, Input, Form, Select } from "antd";
 
 // ant icons
 import { PlusOutlined } from "@ant-design/icons";
@@ -19,7 +12,6 @@ import TrelloList from "./components/TrelloList";
 
 // mock data
 import { useAppContext } from "./context/AppContext";
-
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -36,7 +28,7 @@ function App() {
   const [form] = Form.useForm();
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
-  const { trello, onDragEndList, onDragEndCard }  = useAppContext();
+  const { trello, onDragEndList, onDragEndCard } = useAppContext();
 
   const handleSubmit = (values) => {
     console.log("values: ", values);
@@ -52,17 +44,16 @@ function App() {
     console.log(`selected ${value}`);
   };
 
-
   // using useCallback is optional
   const onDragEnd = (result) => {
-    if(!result.destination) return;
+    if (!result.destination) return;
 
-    if(result.type === 'LIST') {
-      onDragEndList(result)
+    if (result.type === "LIST") {
+      onDragEndList(result);
     }
 
-    if(result.type === 'CARD') {
-      onDragEndCard(result)
+    if (result.type === "CARD") {
+      onDragEndCard(result);
     }
   };
 
@@ -73,7 +64,7 @@ function App() {
           <div className="header__logo" />
           <div className="header__right">
             <div className="header__avatar">
-              <img src="/assets/images/avatar.png" alt="Avatar" />
+              <img src="/avatar.png" alt="Avatar" />
             </div>
           </div>
         </div>
@@ -81,9 +72,7 @@ function App() {
 
       <main>
         <div className="container">
-          <DragDropContext
-            onDragEnd={onDragEnd}
-          >
+          <DragDropContext onDragEnd={onDragEnd}>
             <Droppable
               droppableId="all-lists"
               direction="horizontal"
@@ -103,10 +92,12 @@ function App() {
                   <>
                     {trello.columns.map((listId, listIndex) => {
                       const listItem = trello.lists[listId];
-                      const cards = listItem.cards.map(cardId => trello.cards[cardId]);
+                      const cards = listItem.cards.map(
+                        (cardId) => trello.cards[cardId]
+                      );
 
                       return (
-                        <TrelloList 
+                        <TrelloList
                           key={listItem.id}
                           index={listIndex}
                           title={listItem.title}
@@ -150,7 +141,6 @@ function App() {
             label="Title"
             name="title"
             rules={[{ required: true, message: "Please input your title!" }]}
-            
           >
             <Input />
           </Form.Item>
