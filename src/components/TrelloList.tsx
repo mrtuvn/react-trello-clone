@@ -1,33 +1,25 @@
-import React from 'react';
+// @ts-ignore
+import React from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 
 // ant core
-import {
-  Card,
-  Tooltip,
-  Button,
-  Popconfirm,
-} from "antd";
+import { Card, Tooltip, Button, Popconfirm } from "antd";
 
 // ant icons
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 
 // components
-import SimpleCard from './SimpleCard';
+import SimpleCard from "./SimpleCard";
 
 function TrelloList({ index, listId, title, cards, setOpen }) {
-
   return (
-    <Draggable
-      draggableId={String(listId)}
-      index={index}
-    >
+    <Draggable draggableId={String(listId)} index={index}>
       {(provided) => (
         <div
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
-          className='todoList'
+          className="todoList"
         >
           <Droppable droppableId={String(listId)} type="CARD">
             {(provided) => (
@@ -43,7 +35,7 @@ function TrelloList({ index, listId, title, cards, setOpen }) {
                         onClick={() => setOpen(true)}
                       />
                     </Tooltip>
-    
+
                     <Popconfirm
                       title="Delete the list"
                       description="Are you sure to delete this list?"
@@ -54,10 +46,7 @@ function TrelloList({ index, listId, title, cards, setOpen }) {
                       className="ml-10"
                     >
                       <Tooltip title="Delete this list">
-                        <Button
-                          shape="circle"
-                          icon={<DeleteOutlined />}
-                        />
+                        <Button shape="circle" icon={<DeleteOutlined />} />
                       </Tooltip>
                     </Popconfirm>
                   </>
@@ -69,23 +58,17 @@ function TrelloList({ index, listId, title, cards, setOpen }) {
                   className="trelloList_content"
                 >
                   {cards.map((card, cardIndex) => (
-                    <SimpleCard 
-                      key={card.id}
-                      index={cardIndex}
-                      card={card}
-                    />
+                    <SimpleCard key={card.id} index={cardIndex} card={card} />
                   ))}
                 </div>
                 {provided.placeholder}
-                
               </Card>
             )}
           </Droppable>
-          
         </div>
       )}
     </Draggable>
-  )
+  );
 }
 
-export default TrelloList
+export default TrelloList;

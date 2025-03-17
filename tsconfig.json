@@ -1,4 +1,11 @@
 {
+  "compilerOptions": {
+    "allowImportingTsExtensions": false,
+    "skipLibCheck": false,
+    "noEmit": false,
+    "noCheck": false,
+    "noUncheckedSideEffectImports": true
+  },
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },

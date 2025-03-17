@@ -1,3 +1,4 @@
+// @ts-ignore
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { Card, Avatar, Tooltip, Popconfirm } from "antd";
